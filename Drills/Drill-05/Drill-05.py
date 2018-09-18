@@ -12,6 +12,8 @@ character = load_image('animation_sheet.png')
 point = [(203, 535), (132, 243), (535, 470), (477, 203), (715, 136), (316, 225),
          (510, 92), (692, 518), (682, 336), (712, 349)]
 
+move_distance = 7
+
 
 def move_point():
     frame = 0
@@ -19,18 +21,17 @@ def move_point():
     for num in range(0, 9 + 1):
         x1, y1 = point[num]
         x2, y2 = point[(num + 1) % 10]
-        while x != x2:
+        while x2 - 4 > x or x > x2 + 4:
             if x1 < x2:
-                x += 1
+                x += move_distance / math.sqrt(1 + pow((y2 - y1) / (x2 - x1), 2))
                 direction = 100
             else:
-                x -= 1
+                x -= move_distance / math.sqrt(1 + pow((y2 - y1) / (x2 - x1), 2))
                 direction = 0
             if y1 < y2:
-                y += (y2 - y1) / (x2 - x1) * 1
+                y += (y2 - y1) / (x2 - x1) * move_distance / math.sqrt(1 + pow((y2 - y1) / (x2 - x1), 2))
             else:
-                y -= (y2 - y1) / (x2 - x1) * 1
-
+                y -= (y2 - y1) / (x2 - x1) * move_distance / math.sqrt(1 + pow((y2 - y1) / (x2 - x1), 2))
             clear_canvas()
             grass.draw(400, 30)
             character.clip_draw(frame * 100, direction, 100, 100, x, y)
