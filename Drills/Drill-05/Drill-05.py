@@ -9,8 +9,23 @@ character = load_image('character.png')
 함수의 머리를 동사로 하여 행동을 정해준다
 '''
 # fill here
-def make_rectangle():
+def move_from_center_to_right():
     pass
+def move_up():
+    pass
+def move_left():
+    pass
+def move_down():
+    pass
+def move_from_left_to_center():
+    pass
+
+def make_rectangle():
+    move_from_center_to_right()
+    move_up()
+    move_left
+    move_down()
+    move_from_left_to_center()
 
 
 def make_circle():
