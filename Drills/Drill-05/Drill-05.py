@@ -9,21 +9,23 @@ character = load_image('animation_sheet.png')
 함수의 머리를 동사로 하여 행동을 정해준다
 '''
 # fill here
-point = [(203, 535), (132, 243), (535, 470), (477, 203), (715, 136), (316, 225), (510, 92), (692, 518), (682, 336), (712, 349)]
+point = [(203, 535), (132, 243), (535, 470), (477, 203), (715, 136), (316, 225),
+         (510, 92), (692, 518), (682, 336), (712, 349)]
 
 
 def move_point():
     frame = 0
-    num = 0
-    x, y = point[1]
-    while 1:
+    for num in range(0, 9 + 1):
+        x, y = point[num]
+
         clear_canvas()
         grass.draw(400, 30)
         character.clip_draw(frame * 100, 100, 100, 100, x, y)
         update_canvas()
         frame = (frame + 1) % 8
+        delay(1)
 
-        delay(0.05)
+
 
 
 
