@@ -15,15 +15,29 @@ point = [(203, 535), (132, 243), (535, 470), (477, 203), (715, 136), (316, 225),
 
 def move_point():
     frame = 0
+    x, y = point[0]
     for num in range(0, 9 + 1):
-        x, y = point[num]
+        x1, y1 = point[num]
+        x2, y2 = point[(num + 1) % 10]
+        while x != x2:
+            if x1 < x2:
+                x += 1
+                direction = 100
+            else:
+                x -= 1
+                direction = 0
+            if y1 < y2:
+                y += (y2 - y1) / (x2 - x1) * 1
+            else:
+                y -= (y2 - y1) / (x2 - x1) * 1
 
-        clear_canvas()
-        grass.draw(400, 30)
-        character.clip_draw(frame * 100, 100, 100, 100, x, y)
-        update_canvas()
-        frame = (frame + 1) % 8
-        delay(1)
+            clear_canvas()
+            grass.draw(400, 30)
+            character.clip_draw(frame * 100, direction, 100, 100, x, y)
+            update_canvas()
+            frame = (frame + 1) % 8
+            delay(0.05)
+
 
 
 
