@@ -13,6 +13,17 @@ point1, point2, point3, point4, point5, point6, point7, point8, point9, point10 
 
 
 def move_point():
+    frame = 0
+    x, y = point1
+    while 1:
+        clear_canvas()
+        grass.draw(400, 30)
+        character.clip_draw(frame * 100, 100, 100, 100, x, y)
+        update_canvas()
+        frame = (frame + 1) % 8
+        x -= 3
+        y += (243 - 535 / 132 - 203) * x
+        delay(0.05)
 
 
 
