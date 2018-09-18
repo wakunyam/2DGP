@@ -50,34 +50,12 @@ def move_point():
                     else:
                         y -= (y2 - y1) / (x2 - x1) * move_distance / math.sqrt(1 + pow((y2 - y1) / (x2 - x1), 2))
                 direction = 0
-
             clear_canvas()
             grass.draw(400, 30)
             character.clip_draw(frame * 100, direction, 100, 100, x, y)
             update_canvas()
             frame = (frame + 1) % 8
             delay(0.05)
-
-
-
-
-
-
-
-    '''
-    frame = 0
-     while True:
-        clear_canvas()
-        grass.draw(400, 90)
-        character.clip_draw(frame * 100, 100, 100, 100, x, y)
-        update_canvas()
-        frame = (frame + 1) % 8
-        delay(0.05)
-    '''
-
-
-
-
 
 
 
