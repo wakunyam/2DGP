@@ -56,10 +56,10 @@ def move_from_left_to_center():
 
 def make_rectangle():
     #move_from_center_to_right()
-    move_up()
-    move_left
-    move_down()
-    move_from_left_to_center()
+    #move_up()
+    move_left()
+    #move_down()
+    #move_from_left_to_center()
 
 
 def make_circle():
