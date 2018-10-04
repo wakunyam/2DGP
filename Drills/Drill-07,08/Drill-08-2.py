@@ -14,11 +14,17 @@ points = [(random.randint(-500 + KPU_WIDTH // 2, 500 + KPU_WIDTH // 2),
 
 def draw_curve(p, size):
     frame = 0
+    pic = 1
     for j in range(0, size):
+
         for i in range(0, 100, 2):
             clear_canvas()
             kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
+            for a in range(0, pic):
+                character.clip_draw(0, 100, 100, 100, p[a][0], p[a][1])
             t = i / 100
+            if i == 0:
+                pic=(pic+1)%size
             character_x = ((-t ** 3 + 2 * t ** 2 - t) * p[j][0] + (3 * t ** 3 - 5 * t ** 2 + 2) * p[(j+1)%(size)][0] + (
                     -3 * t ** 3 + 4 * t ** 2 + t) * p[(j+2)%(size)][0] + (t ** 3 - t ** 2) * p[(j+3)%(size)][0]) / 2
             character_y = ((-t ** 3 + 2 * t ** 2 - t) * p[j][1] + (3 * t ** 3 - 5 * t ** 2 + 2) * p[(j+1)%(size)][1] + (
