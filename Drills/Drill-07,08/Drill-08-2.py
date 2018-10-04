@@ -16,7 +16,6 @@ def draw_curve(p, size):
     frame = 0
     pic = 1
     for j in range(0, size):
-
         for i in range(0, 100, 2):
             clear_canvas()
             kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
