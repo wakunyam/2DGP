@@ -38,7 +38,6 @@ class SmallBall:
         self.image.draw(self.x, self.y)
 
 
-
 class BigBall:
     def __init__(self):
         self.image = load_image('ball41x41.png')
