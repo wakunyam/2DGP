@@ -28,3 +28,15 @@ def draw():
     clear_canvas()
     image.draw(400, 300)
     update_canvas()
+
+
+def update():
+    pass
+
+
+def pause():
+    pass
+
+
+def resume():
+    pass

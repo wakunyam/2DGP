@@ -56,8 +56,7 @@ def exit():
 
 
 def pause():
-    game_framework.push_state(pause_state)
-
+    pass
 
 def resume():
     pass
@@ -72,8 +71,7 @@ def handle_events():
             if event.key == SDLK_ESCAPE:
                 game_framework.change_state(title_state)
             elif event.key == SDLK_p:
-                #game_framework.push_state(pause_state)
-                pause()
+                game_framework.push_state(pause_state)
 
 
 def update():
