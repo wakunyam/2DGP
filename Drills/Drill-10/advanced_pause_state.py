@@ -1,5 +1,6 @@
 import game_framework
 from pico2d import *
+import main_state
 
 name = "PauseState"
 image = None
@@ -20,12 +21,13 @@ def handle_events():
     for event in events:
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_p):
             game_framework.pop_state()
-        elif (event.type == SDL_QUIT):
+        elif event.type == SDL_QUIT:
             game_framework.quit()
 
 
 def draw():
     clear_canvas()
+    main_state.draw()
     if show:
         image.draw(400, 300)
     update_canvas()
