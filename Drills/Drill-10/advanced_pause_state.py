@@ -3,7 +3,7 @@ from pico2d import *
 
 name = "PauseState"
 image = None
-
+show = True
 
 def enter():
     global image
@@ -26,12 +26,18 @@ def handle_events():
 
 def draw():
     clear_canvas()
-    image.draw(400, 300)
+    if show:
+        image.draw(400, 300)
     update_canvas()
+    delay(0.3)
 
 
 def update():
-    pass
+    global show
+    if show:
+        show = False
+    else:
+        show = True
 
 
 def pause():
