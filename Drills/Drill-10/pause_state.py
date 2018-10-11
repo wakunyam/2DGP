@@ -11,7 +11,7 @@ def enter():
     image = load_image('pause.png')
 
 
-def quit():
+def exit():
     global image
     del(image)
 
@@ -21,7 +21,6 @@ def handle_events():
     for event in events:
         if (event.type, event.key == SDL_KEYDOWN, SDLK_p):
             game_framework.pop_state()
-    pass
 
 
 def draw():
