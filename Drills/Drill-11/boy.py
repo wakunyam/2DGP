@@ -4,7 +4,7 @@ from ball import Ball
 import game_world
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, RSHIFT_DOWN, RSHIFT_UP = range(7)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, RSHIFT_DOWN, RSHIFT_UP = range(8)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -31,20 +31,23 @@ class DashState:
         elif event == LEFT_UP:
             boy.velocity += 1
         boy.dir = boy.velocity
-        boy.timer = 500
+        boy.timer = 100
 
     @staticmethod
     def exit(boy, event):
         if event == SPACE:
-            boy.fire_ball(RSHIFT_UP)
+            boy.fire_ball()
 
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.timer -= 1
         if boy.timer == 0:
-            boy.add_event()
-        boy.x += boy.velocity
+            boy.add_event(RSHIFT_UP)
+        if boy.velocity > 0:
+            boy.x += boy.velocity + 5
+        else:
+            boy.x += boy.velocity - 5
         boy.x = clamp(25, boy.x, 1600 - 25)
 
     @staticmethod
