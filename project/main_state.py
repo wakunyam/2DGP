@@ -1,6 +1,7 @@
 from pico2d import *
 
 import game_framework
+import game_world
 
 from hero import Hero
 
@@ -10,11 +11,11 @@ hero = None
 def enter():
     global hero
     hero = Hero()
+    game_world.add_object(hero, 1)
 
 
 def exit():
-    global hero
-    del hero
+    game_world.clear()
 
 
 def pause():
@@ -37,10 +38,12 @@ def handle_events():
 
 
 def update():
-    hero.update
+    for game_object in game_world.all_objects():
+        game_object.update()
 
 
 def draw():
     clear_canvas()
-    hero.draw()
+    for game_object in game_world.all_objects():
+        game_object.draw()
     update_canvas()
