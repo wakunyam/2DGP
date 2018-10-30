@@ -1,6 +1,7 @@
 import game_framework
 from pico2d import *
 from ball import Ball
+from ghost import Ghost
 
 import game_world
 
@@ -46,19 +47,17 @@ class IdleState:
             boy.velocity -= RUN_SPEED_PPS
         elif event == LEFT_UP:
             boy.velocity += RUN_SPEED_PPS
-        boy.timer = get_time()
+        boy.time = get_time()
 
     @staticmethod
     def exit(boy, event):
         if event == SPACE:
             boy.fire_ball()
-        pass
 
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
-        boy.timer2 = get_time()
-        if boy.timer2 - boy.timer == 10:
+        if get_time() - 2 >= boy.time:
             boy.add_event(SLEEP_TIMER)
 
     @staticmethod
@@ -103,13 +102,15 @@ class RunState:
 
 
 class SleepState:
-
     @staticmethod
     def enter(boy, event):
         boy.frame = 0
+        boy.ghost = Ghost(boy.x, boy.y)
+        game_world.add_object(boy.ghost, 1)
 
     @staticmethod
     def exit(boy, event):
+        game_world.remove_object(boy.ghost)
         pass
 
     @staticmethod
@@ -144,15 +145,15 @@ class Boy:
         self.dir = 1
         self.velocity = 0
         self.frame = 0
+        self.time = 0
+        self.ghost = None
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
 
-
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.dir*3)
         game_world.add_object(ball, 1)
-
 
     def add_event(self, event):
         self.event_que.insert(0, event)
