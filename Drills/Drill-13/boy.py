@@ -73,6 +73,7 @@ class WalkingState:
         # fill here
         #boy.x = clamp(boy.canvas_width // 2, boy.x, boy.bg.w - boy.canvas_width // 2)
         #boy.y = clamp(boy.canvas_height // 2, boy.y, boy.bg.h - boy.canvas_height // 2)
+        
         t = boy.y / 1000
         clamp_x_left = 220 * t + 30 * (1 - t)
         clamp_x_right = 1620 * t + 1800 * (1 - t)
